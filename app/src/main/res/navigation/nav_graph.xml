@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/shoppingListFragment">
+
+    <fragment
+        android:id="@+id/shoppingListFragment"
+        android:name="edu.uga.cs.roommateapp.fragments.ShoppingListFragment"
+        android:label="Shopping List"
+        tools:layout="@layout/fragment_shopping_list" />
+    <fragment
+        android:id="@+id/recentlyPurchasedFragment"
+        android:name="edu.uga.cs.roommateapp.fragments.RecentlyPurchasedFragment"
+        android:label="Recently Purchased"
+        tools:layout="@layout/fragment_recently_purchased" />
+</navigation>
