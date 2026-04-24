@@ -3,9 +3,17 @@
     <item
         android:id="@+id/shoppingListFragment"
         android:icon="@android:drawable/ic_menu_sort_by_size"
-        android:title="Shopping List" />
+        android:title="List" />
     <item
-        android:id="@+id/recentlyPurchasedFragment"
+        android:id="@+id/basketFragment"
+        android:icon="@android:drawable/ic_menu_send"
+        android:title="Basket" />
+    <item
+        android:id="@+id/purchasedItemsFragment"
+        android:icon="@android:drawable/ic_menu_agenda"
+        android:title="Purchases" />
+    <item
+        android:id="@+id/historyFragment"
         android:icon="@android:drawable/ic_menu_recent_history"
-        android:title="Recent" />
+        android:title="History" />
 </menu>

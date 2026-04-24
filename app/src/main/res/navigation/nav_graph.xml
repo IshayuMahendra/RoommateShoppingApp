@@ -10,9 +10,22 @@
         android:name="edu.uga.cs.roommateapp.fragments.ShoppingListFragment"
         android:label="Shopping List"
         tools:layout="@layout/fragment_shopping_list" />
+
     <fragment
-        android:id="@+id/recentlyPurchasedFragment"
-        android:name="edu.uga.cs.roommateapp.fragments.RecentlyPurchasedFragment"
-        android:label="Recently Purchased"
-        tools:layout="@layout/fragment_recently_purchased" />
+        android:id="@+id/basketFragment"
+        android:name="edu.uga.cs.roommateapp.fragments.BasketFragment"
+        android:label="Shopping Basket"
+        tools:layout="@layout/fragment_basket" />
+
+    <fragment
+        android:id="@+id/purchasedItemsFragment"
+        android:name="edu.uga.cs.roommateapp.fragments.PurchasedItemsFragment"
+        android:label="Purchased Items"
+        tools:layout="@layout/fragment_purchased_items" />
+
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="edu.uga.cs.roommateapp.fragments.HistoryFragment"
+        android:label="History"
+        tools:layout="@layout/fragment_history" />
 </navigation>
