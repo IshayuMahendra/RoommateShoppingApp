@@ -18,10 +18,20 @@ import edu.uga.cs.roommateapp.models.Purchase;
 
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder> {
 
+    public interface OnPurchaseClickListener {
+        void onPurchaseClick(Purchase purchase);
+    }
+
     private List<Purchase> purchaseList;
+    private OnPurchaseClickListener listener;
 
     public HistoryAdapter(List<Purchase> purchaseList) {
         this.purchaseList = purchaseList;
+    }
+
+    public HistoryAdapter(List<Purchase> purchaseList, OnPurchaseClickListener listener) {
+        this.purchaseList = purchaseList;
+        this.listener = listener;
     }
 
     @NonNull
@@ -51,6 +61,10 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
             summary = summary.substring(0, summary.length() - 2);
         }
         holder.tvItemsSummary.setText(summary);
+
+        if (listener != null) {
+            holder.itemView.setOnClickListener(v -> listener.onPurchaseClick(purchase));
+        }
     }
 
     @Override

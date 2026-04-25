@@ -84,19 +84,29 @@ public class ShoppingListFragment extends Fragment {
     }
 
     private void showItemOptionsDialog(Item item) {
-        String[] options = {"Add to Basket", "Edit", "Delete"};
-        new AlertDialog.Builder(getContext())
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.dialog_shopping_item_options, null);
+        AlertDialog dialog = new AlertDialog.Builder(getContext())
                 .setTitle(item.name)
-                .setItems(options, (dialog, which) -> {
-                    if (which == 0) { // Add to Basket
-                        addToBasket(item);
-                    } else if (which == 1) { // Edit
-                        showEditDialog(item);
-                    } else if (which == 2) { // Delete
-                        deleteItem(item);
-                    }
-                })
-                .show();
+                .setView(view)
+                .setNegativeButton("Cancel", null)
+                .create();
+
+        view.findViewById(R.id.btnAddToBasket).setOnClickListener(v -> {
+            dialog.dismiss();
+            addToBasket(item);
+        });
+
+        view.findViewById(R.id.btnEditItem).setOnClickListener(v -> {
+            dialog.dismiss();
+            showEditDialog(item);
+        });
+
+        view.findViewById(R.id.btnDeleteItem).setOnClickListener(v -> {
+            dialog.dismiss();
+            deleteItem(item);
+        });
+
+        dialog.show();
     }
 
     private void showEditDialog(@Nullable Item item) {

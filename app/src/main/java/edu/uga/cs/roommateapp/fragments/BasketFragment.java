@@ -88,14 +88,14 @@ public class BasketFragment extends Fragment {
     }
 
     private void showCheckoutDialog() {
-        EditText etPrice = new EditText(getContext());
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.dialog_edit_price, null);
+        EditText etPrice = view.findViewById(R.id.etEditPrice);
         etPrice.setHint("Total Price (e.g. 25.50)");
-        etPrice.setInputType(android.text.InputType.TYPE_CLASS_NUMBER | android.text.InputType.TYPE_NUMBER_FLAG_DECIMAL);
 
         new AlertDialog.Builder(getContext())
                 .setTitle("Checkout")
                 .setMessage("Enter the total price for these items:")
-                .setView(etPrice)
+                .setView(view)
                 .setPositiveButton("Buy", (dialog, which) -> {
                     String priceStr = etPrice.getText().toString().trim();
                     if (!priceStr.isEmpty()) {
@@ -140,15 +140,19 @@ public class BasketFragment extends Fragment {
     }
 
     private void showBasketOptionsDialog(Item item) {
-        String[] options = {"Remove from Basket (Return to List)"};
-        new AlertDialog.Builder(getContext())
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.dialog_basket_item_options, null);
+        AlertDialog dialog = new AlertDialog.Builder(getContext())
                 .setTitle(item.name)
-                .setItems(options, (dialog, which) -> {
-                    if (which == 0) {
-                        returnToList(item);
-                    }
-                })
-                .show();
+                .setView(view)
+                .setNegativeButton("Cancel", null)
+                .create();
+
+        view.findViewById(R.id.btnReturnToList).setOnClickListener(v -> {
+            dialog.dismiss();
+            returnToList(item);
+        });
+
+        dialog.show();
     }
 
     private void returnToList(Item item) {
